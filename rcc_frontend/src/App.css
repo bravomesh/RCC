@@ -1,3 +1,6 @@
+.leaflet-container {
+  background-color: transparent !important;  /* Ensures the map background is transparent */
+}
 /* Legend container */
 .leaflet-control .legend {
     background: white;
@@ -21,4 +24,5 @@
     display: block;
     margin-bottom: 5px;
   }
+  
   
