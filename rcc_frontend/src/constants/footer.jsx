@@ -15,11 +15,12 @@ function Footer() {
           <div className="max-w-md text-center lg:text-left">
             <h4 className="text-xl font-bold underline">About this Dashboard:</h4>
             <p className="mt-2 text-left">
-              The disaster dashboard is a comprehensive tool designed to monitor and analyze disaster events
-              across the 11 ICPAC region countries. This interactive platform allows users to visualize and interact with 
-              disaster data at multiple geographic levels. This disaster dashboard 
-              serves as an essential resource for researchers, policymakers, and emergency response teams, offering valuable
-              insights into disaster patterns, aiding in preparedness, response, and mitigation efforts across East Africa.
+            The Regional Climate Climatology (RCC) Dashboard is a comprehensive tool designed to monitor and analyze climate patterns 
+            across the 11 countries in the ICPAC region. This interactive platform allows users to visualize and interact with
+             climatological data. The RCC dashboard serves as an essential resource for researchers,
+              policymakers, and climate scientists, offering valuable insights into seasonal and long-term climate trends.
+               It aids in understanding regional climate variability, supporting climate adaptation, mitigation efforts, 
+               and resilience planning across East African.            
             </p>
           </div>
           <div className="max-w-xs text-left">

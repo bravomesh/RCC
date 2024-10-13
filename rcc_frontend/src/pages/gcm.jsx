@@ -92,19 +92,26 @@ const Gcm = () => {
     return url ? url.split('/').pop() : '';
   };
   return (
-    <div className="container  box-border">
-      <div
-        className="relative w-full bg-cover bg-center text-white"
-        style={{ backgroundImage: `url(${home})`, height: '70vh', width: '99vw' }}
-      >
-        <div className="absolute bottom-10 left-10">
-          <h2 className="text-4xl font-bold">IGAD Regional Climate Center</h2>
-          <p className="mt-2">A Climate Center of Excellence Designated By the World Meteorological Department</p>
-          <button className="mt-4 bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded-lg">
-            Give Us Feedback
-          </button>
-        </div>
-      </div>
+    <div className="  box-border">
+    <div className='h-screen'>
+    <div
+    className="relative  h-screen bg-cover bg-center flex flex-col justify-center text-white pl-10"
+    style={{
+      backgroundImage: `url(${home})`,
+      width: '100%',
+      height: '100%', 
+    }}
+  >
+ 
+    <h2 className="text-5xl font-bold mb-4 animate-fade-in-left">IGAD Regional Climate Center</h2>
+    <p className="text-lg mb-6 animate-fade-in-left delay-200">
+      A Climate Center of Excellence Designated By the World Meteorological Department
+    </p>
+    <button className="bg-blue-700 hover:bg-blue-800 transition-transform transform hover:scale-110 rounded-xl px-6 py-3 font-bold w-max animate-bounce-in">
+      Give Us Feedback
+    </button>
+    </div> 
+  </div>
 
       <div className="mt-10 ml-10">
         <h1 className="text-2xl font-semibold mb-4">GCM Data Viewer</h1>

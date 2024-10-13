@@ -26,43 +26,30 @@ function RasterLayer({ tiffUrl, geoRasterLayer, setGeoRasterLayer }) {
         const arrayBuffer = await response.arrayBuffer();
         const georaster = await parseGeoraster(arrayBuffer);
 
-
         if (geoRasterLayer) {
           map.removeLayer(geoRasterLayer);
         }
         console.log(georaster);
 
-        
-        const originalColorMap = {
-          // Map your original pixel values to their corresponding colors
-          0: 'rgba(255, 0, 0, 1)',    // Example color for pixel value 0 (Red)
-          1: 'rgba(0, 255, 0, 1)',    // Example color for pixel value 1 (Green)
-          2: 'rgba(0, 0, 255, 1)',    // Example color for pixel value 2 (Blue)
-          3: 'rgba(255, 255, 0, 1)',  // Example color for pixel value 3 (Yellow)
-          // Continue mapping other values as needed...
-          // If a value is not mapped, you can use a default color or make it transparent
-        };
 
         const rasterLayer = new GeoRasterLayer({
           georaster,
           opacity: 1,
-          resolution: 256,
-          source: tiffUrl,
+          resolution: 128,
+          source: tiffUrl,  
+          noDataValue: NaN,   
           pixelValuesToColorFn: values => {
             const pixelValue = values[0];
-
-            // Check for No Data values or NaN
-            if (pixelValue === georaster.noDataValue || isNaN(pixelValue)) {
-              return null; // Transparent for No Data values
-            }
-
-            // Look up the original color based on the pixel value
-            const color = originalColorMap[pixelValue];
-
-            return color ? color : 'rgba(0, 0, 0, 0)'; // Return the mapped color or transparent if not found
-          },
-        });
         
+            return pixelValue === georaster.noDataValue || isNaN(pixelValue)
+              ? null // Transparent for No Data values
+              : (pixelValue >= 0 && pixelValue <= 15
+                  ? `rgba(0, 0, 255, ${pixelValue / 15})` // Blue scale for valid data
+                  : 'rgba(0,0,0,0)'); // Transparent for other invalid data
+          },
+          
+        
+        });
         console.log('Raster Layer:', rasterLayer);
         rasterLayer.addTo(map);
         map.fitBounds(rasterLayer.getBounds());

@@ -1,20 +1,26 @@
-import home from '../public/icpac-home.png'
-
+import home from '../public/icpac-home.png';
 
 function Home() {
   return (
-    <div className='container'>
-    <div
-      className="relative w-full  bg-cover bg-center text-white"
-      style={{ backgroundImage: `url(${home})`, height: '70vh', width: '100vw'}} // 50vh makes it take half the screen height
-    >
-      <h2 className="text-4xl font-bold pt-60 ml-10">IGAD Regional CLimate Center</h2>
-      <p className='ml-10'> A Climate Center of Excellence Designated By the World Meteoroligical Department </p>
-       <button className='bg-blue-700 rounded-xl font-bold ml-10 px-3 py-1'>Give Us Feedback</button>
+    <div className="flex items-center justify-center h-screen  overflow-hidden">
+      <div
+        className="relative   bg-cover bg-center flex flex-col justify-center text-white pl-10"
+        style={{
+          backgroundImage: `url(${home})`,
+          width: '100%',
+          height: '100%', 
+        }}
+      >
+        <h2 className="text-5xl font-bold mb-4 animate-fade-in-left">IGAD Regional Climate Center</h2>
+        <p className="text-lg mb-6 animate-fade-in-left delay-200">
+          A Climate Center of Excellence Designated By the World Meteorological Department
+        </p>
+        <button className="bg-blue-700 hover:bg-blue-800 transition-transform transform hover:scale-110 rounded-xl px-6 py-3 font-bold w-max animate-bounce-in">
+          Give Us Feedback
+        </button>
+      </div>
     </div>
-     
-    </div>
-  )
+  );
 }
 
-export default Home
+export default Home;

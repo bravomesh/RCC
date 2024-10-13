@@ -2,13 +2,14 @@ import React from 'react';
 import climate from '../public/climate-change.jpg'
 function ClimateChange() {
   return (
-    <div className='container'>
+    <div className=''>
     <div
-        className="relative w-full  bg-cover bg-center text-white"
-        style={{ backgroundImage: `url(${climate})`, height: '70vh', width: '100vw'}} // 50vh makes it take half the screen height
-      >
-        <h2 className="text-4xl font-bold pt-60 pl-10">Climate Change</h2>
-      </div>
+    className="relative w-full bg-cover bg-center text-white "
+    style={{ backgroundImage: `url(${climate})`, width: '100%',
+      height: '100%',  }}
+  >
+    <h2 className="text-4xl font-bold pt-60 pl-10 animate-fade-in pb-10">Climate change</h2>
+  </div>
     <div className="p-6 md:p-10 bg-white text-gray-800 max-w-3xl mx-auto">
       <h1 className="text-2xl md:text-3xl font-bold mb-4">Climate Change</h1>
       <p className="text-base md:text-lg leading-relaxed mb-4">

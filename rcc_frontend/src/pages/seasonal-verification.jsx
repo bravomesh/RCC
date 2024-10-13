@@ -46,12 +46,14 @@ const Skill = () => {
   }, []);
 
   return (
-    <div className="container">
+    <div className="">
       {/* Background Image Section */}
       <div
-        className="relative w-full  bg-cover bg-center text-white"
-        style={{ backgroundImage: `url(${verification})`, height: '70vh', width: '100vw'}} >
-        <h2 className="text-4xl font-bold pt-60 pl-10">Skills Diagnostics</h2>
+        className="relative w-full bg-cover bg-center text-white "
+        style={{ backgroundImage: `url(${verification})`, width: '100%',
+          height: '100%',  }}
+      >
+        <h2 className="text-4xl font-bold pt-60 pl-10 animate-fade-in pb-10">Seasonal Verification</h2>
       </div>
       
       {/* Data Table Section */}

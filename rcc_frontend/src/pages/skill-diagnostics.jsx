@@ -50,6 +50,11 @@ function RasterLayer({ tiffUrl, geoRasterLayer, setGeoRasterLayer }) {
   return null;
 }
 
+const bounds = [
+  [-18, 20],
+  [33, 58]
+];
+
 function Skill() {
   const [dataType, setDataType] = useState('Raw Data');
   const [parameter, setParameter] = useState('Precipitation');
@@ -127,53 +132,47 @@ function Skill() {
   }
 
   return (
-    <div className="container">
+    <div>
       <div
         className="relative w-full bg-cover bg-center text-white"
-        style={{ backgroundImage: `url(${skill})`, height: '70vh', width: '100vw' }}
+        style={{ backgroundImage: `url(${skill})`, width: '100%',
+          height: '100%',  }}
       >
-        <h2 className="text-4xl font-bold pt-60 pl-10">Skill Diagnostics</h2>
+        <h2 className="text-4xl font-bold pt-60 pl-10 animate-fade-in pb-10">Skill Diagnostics</h2>
       </div>
-      <div className='ml-6'>
-      <div className="flex flex-wrap justify-between items-center px-4 py-4 bg-gray-100 rounded shadow-lg mt-4">
-        {/* Raw/Calibrated Data Selector */}
-        <select onChange={handleDataTypeChange} value={dataType} className="form-select p-2 bg-white rounded border-gray-300 shadow">
+      <div className='m-10'>
+      <div className="flex flex-wrap justify-between items-center px-4 py-4 bg-gray-100 rounded shadow-lg mt-4 animate-fade-in-left">
+        <select onChange={handleDataTypeChange} value={dataType} className="form-select p-2 bg-white rounded border-gray-300 shadow hover:bg-teal-600 focus:bg-teal-600 transition duration-300">
           <option value="Raw Data">Raw Data</option>
           <option value="Calibrated Data">Calibrated Data</option>
         </select>
 
-        {/* Precipitation/Temperature Selector */}
         {dataType === 'Raw Data' && (
-          <select onChange={(e) => setParameter(e.target.value)} value={parameter} className="form-select p-2 bg-white rounded border-gray-300 shadow">
+          <select onChange={(e) => setParameter(e.target.value)} value={parameter} className="form-select p-2 bg-white rounded border-gray-300 shadow hover:bg-teal-600 focus:bg-teal-600 transition duration-300">
             <option value="Precipitation">Precipitation</option>
             <option value="Temperature">Temperature</option>
           </select>
         )}
 
-        {/* Model Selector */}
-        <select onChange={(e) => setModel(e.target.value)} value={model} className="form-select p-2 bg-white rounded border-gray-300 shadow">
+        <select onChange={(e) => setModel(e.target.value)} value={model} className="form-select p-2 bg-white rounded border-gray-300 shadow hover:bg-teal-600 focus:bg-teal-600 transition duration-300">
           <option value="NASA-GEOSS">NASA-GEOSS</option>
           <option value="CCSM4">CCSM4</option>
           <option value="DWD">DWD</option>
           <option value="ECMWF">ECMWF</option>
-          {/* Add more models as needed */}
         </select>
 
-        {/* Season Selector */}
-        <select onChange={(e) => setSeason(e.target.value)} value={season} className="form-select p-2 bg-white rounded border-gray-300 shadow">
+        <select onChange={(e) => setSeason(e.target.value)} value={season} className="form-select p-2 bg-white rounded border-gray-300 shadow hover:bg-teal-600 focus:bg-teal-600 transition duration-300">
           <option value="MAM">MAM</option>
           <option value="JAS">JAS</option>
           <option value="OND">OND</option>
         </select>
 
-        {/* Lead Time Selector */}
-        <select onChange={(e) => setLeadTime(e.target.value)} value={leadTime} className="form-select p-2 bg-white rounded border-gray-300 shadow">
+        <select onChange={(e) => setLeadTime(e.target.value)} value={leadTime} className="form-select p-2 bg-white rounded border-gray-300 shadow hover:bg-teal-600 focus:bg-teal-600 transition duration-300">
           <option value="1 Month">1 Month</option>
           <option value="2 Month">2 Month</option>
         </select>
 
-        {/* ROC Type Selector */}
-        <select onChange={(e) => setRocType(e.target.value)} value={rocType} className="form-select p-2 bg-white rounded border-gray-300 shadow">
+        <select onChange={(e) => setRocType(e.target.value)} value={rocType} className="form-select p-2 bg-white rounded border-gray-300 shadow hover:bg-teal-600 focus:bg-teal-600 transition duration-300">
           <option value="Correlation">Correlation</option>
           <option value="Root Mean Square Error">Root Mean Square Error</option>
           <option value="ROC Above">ROC Above</option>
@@ -182,8 +181,9 @@ function Skill() {
         </select>
       </div>
 
-      <div className="h-screen">
-        <MapContainer center={[9, 20]} zoom={4} className="h-full">
+      <div className="h-screen ">
+        <MapContainer center={[9, 20]}  zoom={5} maxBounds={bounds} 
+        minZoom={4}  className="h-full">
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
