@@ -4,7 +4,7 @@ import skill from '../public/skills-diagnostics.png';
 
 
 const Reference = () => {
-  const [selectedMonth, setSelectedMonth] = useState('');
+  const [selectedMonth, setSelectedMonth] = useState('Jan');
   const [selectedSeason, setSelectedSeason] = useState('Annual');
   const [images, setImages] = useState([]);
 
@@ -28,15 +28,16 @@ const Reference = () => {
   }, [selectedMonth, selectedSeason]);
 
   return (
-    <div>    <div
+    <div className='overflow-hidden'>    
+    <div
         className="relative w-full bg-cover bg-center text-white"
         style={{ backgroundImage: `url(${skill})`, width: '100%',
           height: '100%',  }}
       >
         <h2 className="text-4xl font-bold pt-60 pl-10 animate-fade-in pb-10">Skill Diagnostics</h2>
       </div>
-    <div className="flex flex-col items-center">
-      <div className="flex gap-4 mb-4">
+    <div className="flex flex-col bg-slate-100">
+      <div className="flex gap-4 justify-around my-4">
         {/* Month Selector */}
         <select value={selectedMonth} onChange={(e) => setSelectedMonth(e.target.value)} className="border p-2 rounded-md shadow-sm">
           <option value="Jan">January</option>
@@ -63,7 +64,7 @@ const Reference = () => {
         </select>
       </div>
 
-      <div className="flex gap-4">
+      <div className="flex gap-4 mx-7 mb-7">
         {images.length > 0 && images.map((img) => (
           <img key={img.image} src={img.image} alt={`${img.month} - ${img.season}`} className="w-1/2" />
         ))}
