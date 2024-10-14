@@ -1,7 +1,8 @@
 from rest_framework import viewsets
-from .models import CofRecord, ClimatologyImage, RCMImage, GCMImage, SkillImage     
-from .serializers import CofRecordSerializer, ClimatologyImageSerializer, RCMImageSerializer, GCMImageSerializer, SkillImageSerializer
+from .models import CofRecord, ClimatologyImage, RCMImage, GCMImage, SkillImage , Reference    
+from .serializers import CofRecordSerializer, ClimatologyImageSerializer, RCMImageSerializer, GCMImageSerializer, SkillImageSerializer, ReferenceSerializer
 from rest_framework.response import Response
+from rest_framework.decorators import action
 
 class CofRecordViewSet(viewsets.ModelViewSet):
     queryset = CofRecord.objects.all()
@@ -132,3 +133,36 @@ class SkillImageViewSet(viewsets.ModelViewSet):
         
         print(queryset)
         return queryset
+    
+
+class ReferenceViewset(viewsets.ModelViewSet):
+    queryset = Reference.objects.all()
+    serializer_class = ReferenceSerializer
+
+    @action(detail=False, methods=['get'])
+    def filter_by_month_and_season(self, request):
+        month = request.query_params.get('month')
+        season = request.query_params.get('season')
+        
+        print(month, season)
+
+        images = []
+        
+        # Get an image based on the month
+        if month:
+            month_image = Reference.objects.filter(month=month).first()
+            if month_image:
+                images.append(month_image)
+
+        # Get an image based on the season
+        if season:
+            season_image = Reference.objects.filter(season=season).first()
+            if season_image:
+                images.append(season_image)
+
+        if images:
+            serializer = self.get_serializer(images, many=True)
+            print(serializer)
+            return Response(serializer.data)
+        print(images)
+        return Response({"error": "No images found for the selected month and season."}, status=404)

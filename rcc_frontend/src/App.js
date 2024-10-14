@@ -10,6 +10,7 @@ import ClimateChange from "./pages/climate-change";
 import Skill from "./pages/skill-diagnostics"
 import Footer from "./constants/footer";
 import  Verification from "./pages/seasonal-verification";
+import Reference from "./pages/reference";
 function App() {
   return (
     <Router>
@@ -23,6 +24,8 @@ function App() {
         <Route path="/climate-change" element={<ClimateChange />} />
         <Route path="/skill" element={<Skill />} />
         <Route path="/verification" element={<Verification />} />
+        <Route path="/reference" element={<Reference />} />
+
       </Routes>
       <Footer />
     </Router>

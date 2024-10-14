@@ -60,4 +60,12 @@ class SkillImage(models.Model):
     def __str__(self):
         return f"{self.model} - {self.season} - {self.lead_time} - {self.roc_type}"
 
+class Reference(models.Model):
+    month = models.CharField(max_length=100, blank= True)
+    season = models.CharField(max_length=100, blank=True)
+    image = models.FileField(upload_to='reference_image/')
+    
+    def __str__(self):
+        return f"{self.month} - {self.season}"
+    
 

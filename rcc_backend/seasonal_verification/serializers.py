@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import CofRecord, ClimatologyImage, RCMImage, GCMImage, SkillImage
+from .models import CofRecord, ClimatologyImage, RCMImage, GCMImage, SkillImage, Reference
 
 class CofRecordSerializer(serializers.ModelSerializer):
     class Meta:
@@ -25,4 +25,9 @@ class GCMImageSerializer(serializers.ModelSerializer):
 class SkillImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = SkillImage
+        fields = '__all__'
+
+class ReferenceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Reference
         fields = '__all__'
