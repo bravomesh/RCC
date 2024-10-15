@@ -6,7 +6,7 @@ import {faFacebook, faYoutube, faSquareXTwitter, faInstagram, faLinkedin, faGith
 
 function Footer() {
   return (
-    <div className="bg-teal-900 text-white py-8">
+    <div className="bg-teal-900 text-white pb-6 pt-4">
       <div className="">
         <div className="flex flex-col lg:flex-row mx-20 justify-between gap-8 2xl:mx-40">
           <div>

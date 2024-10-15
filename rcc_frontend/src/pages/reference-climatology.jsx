@@ -35,7 +35,7 @@ function RasterLayer({ tiffUrl, geoRasterLayer, setGeoRasterLayer }) {
         const rasterLayer = new GeoRasterLayer({
           georaster,
           opacity: 1,
-          resolution: 128,
+          resolution: 32,
           source: tiffUrl,  
           noDataValue: NaN,   
           pixelValuesToColorFn: values => {
