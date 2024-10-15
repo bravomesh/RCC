@@ -40,15 +40,25 @@ function RasterLayer({ tiffUrl, geoRasterLayer, setGeoRasterLayer }) {
           noDataValue: NaN,   
           pixelValuesToColorFn: values => {
             const pixelValue = values[0];
-        
-            return pixelValue === georaster.noDataValue || isNaN(pixelValue)
-              ? null // Transparent for No Data values
-              : (pixelValue >= 0 && pixelValue <= 15
-                  ? `rgba(0, 0, 255, ${pixelValue / 15})` // Blue scale for valid data
-                  : 'rgba(0,0,0,0)'); // Transparent for other invalid data
-          },
+            
+            if (pixelValue === georaster.noDataValue || isNaN(pixelValue)) {
+              return null; // Transparent for No Data values
+            }
           
-        
+            // Define a color scale based on the pixel value (0 to 15)
+            const min = 0;
+            const max = 15;
+            
+            // Normalized value between 0 and 1
+            const normalizedValue = (pixelValue - min) / (max - min);
+            
+            // Gradient from blue (0) to green (0.5) to red (1)
+            const r = Math.round(normalizedValue * 255);
+            const g = Math.round((1 - Math.abs(normalizedValue - 0.5) * 2) * 255);
+            const b = Math.round((1 - normalizedValue) * 255);
+            
+            return `rgba(${r}, ${g}, ${b}, 1)`; // RGB with full opacity
+          },       
         });
         console.log('Raster Layer:', rasterLayer);
         rasterLayer.addTo(map);
