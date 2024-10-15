@@ -15,12 +15,10 @@ function Footer() {
           <div className="max-w-md text-center lg:text-left">
             <h4 className="text-xl font-bold underline">About this Dashboard:</h4>
             <p className="mt-2 text-left">
-            The Regional Climate Climatology (RCC) Dashboard is a comprehensive tool designed to monitor and analyze climate patterns 
-            across the 11 countries in the ICPAC region. This interactive platform allows users to visualize and interact with
-             climatological data. The RCC dashboard serves as an essential resource for researchers,
-              policymakers, and climate scientists, offering valuable insights into seasonal and long-term climate trends.
-               It aids in understanding regional climate variability, supporting climate adaptation, mitigation efforts, 
-               and resilience planning across East African.            
+              The Regional Climate Climatology (RCC) Dashboard is an interactive tool for monitoring and 
+              analyzing climate patterns in the 11 ICPAC countries. It offers valuable insights into seasonal
+              and long-term trends, supporting researchers, policymakers, and climate scientists in understanding
+              regional climate variability.            
             </p>
           </div>
           <div className="max-w-xs text-left">
