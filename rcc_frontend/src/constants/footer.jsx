@@ -30,7 +30,9 @@ function Footer() {
               <br />
               P.O BOX 10304-00100
             </p>
-            <button className="bg-teal-600 text-white  font-bold py-2 px-4 mt-4 rounded">Feed Back</button>
+            <a href="https://www.icpac.net/feedback/" target="_blank" rel="noopener noreferrer">
+              <button className="bg-teal-600 text-white  font-bold py-2 px-4 mt-4 rounded">Feed Back</button>
+            </a>
             <div className="mt-4 flex justify-around ">
                 <button><FontAwesomeIcon className='h-7 w-7' icon={faFacebook} /></button>
                 <button><FontAwesomeIcon className='h-7 w-7' icon={faYoutube} /></button>
