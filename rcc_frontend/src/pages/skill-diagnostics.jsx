@@ -1,12 +1,14 @@
 import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import { MapContainer, TileLayer, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, useMap, LayersControl } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import '../App.css';
 import L from 'leaflet';
 import parseGeoraster from 'georaster';
 import GeoRasterLayer from 'georaster-layer-for-leaflet';
 import skill from '../public/skills-diagnostics.png';
+
+const { BaseLayer } = LayersControl;
 
 function RasterLayer({ tiffUrl, geoRasterLayer, setGeoRasterLayer }) {
   const map = useMap();
@@ -34,6 +36,7 @@ function RasterLayer({ tiffUrl, geoRasterLayer, setGeoRasterLayer }) {
           georaster,
           opacity: 0.7,
           source: tiffUrl,
+          zIndex: 1000,
           pixelValuesToColorFn: values => {
             const pixelValue = values[0];
             
@@ -206,10 +209,40 @@ function Skill() {
       <div className="h-screen ">
         <MapContainer center={[9, 20]}  zoom={5} maxBounds={bounds} 
         minZoom={4}  className="h-full">
+        <LayersControl position="topright">
+        <BaseLayer  name="Stadia Dark">
+        <TileLayer
+          attribution='&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
+        />
+       </BaseLayer>
+        <BaseLayer  name="OpenStreetMap">
           <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
+        </BaseLayer>
+        <BaseLayer checked name="Esri World Imagery">
+          <TileLayer
+            attribution='Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+            url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+          />
+        </BaseLayer>
+      <BaseLayer  name="Esri World Terrain">
+      <TileLayer
+        attribution='Tiles &copy; Esri &mdash; Source: USGS, Esri, TANA, DeLorme, and NPS'
+        url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Terrain_Base/MapServer/tile/{z}/{y}/{x}"
+      />
+    </BaseLayer>
+    <BaseLayer name="ICPAC Drought Watch">
+      <TileLayer
+        attribution='&copy; <a href="https://eahazardswatch.icpac.net/">ICPAC Drought Watch</a>'
+        url="https://eahazardswatch.icpac.net/tileserver-gl/styles/droughtwatch/{z}/{x}/{y}.png"
+        tileSize={512}
+        zoomOffset={-1}
+      />
+    </BaseLayer>
+        </LayersControl>
 
           <RasterLayer tiffUrl={tiffUrl} geoRasterLayer={geoRasterLayer} setGeoRasterLayer={setGeoRasterLayer} />
           <Legend />
