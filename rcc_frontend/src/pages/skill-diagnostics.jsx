@@ -131,7 +131,7 @@ function Skill() {
         const grades = [-0.8, -0.6, -0.4, -0.2, -0.1, 0, 0.2, 0.4, 0.6, 0.8, 1];
         const colors = ['#08306B', '#08519C', '#2171B5', '#4292C6', '#6BAED6', '#FFFFFF', '#FDAE6B', '#F16913', '#D94801', '#A63603', '#7F2704'];
 
-        let labels = `<strong class="text-sm">${season} - ${parameter.charAt(0).toUpperCase() + parameter.slice(1)} </strong><br>`;
+        let labels = `<strong class="text-sm">${rocType}</strong><br>`;
 
         for (let i = 0; i < grades.length; i++) {
           labels += `
